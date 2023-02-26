@@ -53,10 +53,11 @@ def _sources_to_cache_map_triples(srcs, is_aspect):
 
 def _is_external_dep(dep):
     return (dep.label.workspace_root.startswith("external/") or
-            dep.label.workspace_root.startswith("../"))
+            dep.label.workspace_root.startswith("bazel-out/"))
 
 def _is_external_src(src_file):
-    return src_file.path.startswith("external/")
+    return (src_file.path.startswith("external/") or
+            src_file.path.startswith("bazel-out/"))
 
 def _extract_srcs(srcs):
     direct_src_files = []
