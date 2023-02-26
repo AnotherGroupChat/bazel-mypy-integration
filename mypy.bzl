@@ -52,7 +52,8 @@ def _sources_to_cache_map_triples(srcs, is_aspect):
     return triples_as_flat_list
 
 def _is_external_dep(dep):
-    return dep.label.workspace_root.startswith("external/")
+    return (dep.label.workspace_root.startswith("external/") or
+            dep.label.workspace_root.startswith("../"))
 
 def _is_external_src(src_file):
     return src_file.path.startswith("external/")
